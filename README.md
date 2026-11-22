@@ -2,6 +2,9 @@
 
 Captures an English subtitle ROI from a PC window, OCRs it locally, translates the newest line to Hebrew with local NLLB-200/CTranslate2, and serves the result to phones on the LAN.
 
+## Disclaimer
+ this code built for english -> hebrew 
+ but you can change it in: nllb_translator.py and if using openai model change the prompt here: translator.py
 ## Fast local NLLB server
 
 The recommended implementation is now `server.py`. It uses RapidOCR plus
@@ -33,7 +36,7 @@ which interpreters are installed with `py --list`:
 
 ```powershell
 py --list
-py -3.11 -m venv .venv
+py -3.14 -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 ollama pull qwen2.5:3b
@@ -90,14 +93,12 @@ Browsers generally require HTTPS (or localhost) to grant Wake Lock, so a plain
 `http://10.x.x.x:8000` page cannot guarantee that the phone stays awake. For
 reliable Wake Lock, use local HTTPS or increase the phone's screen timeout.
 
-Run each command separately. If Python 3.11 is not installed, install it from
-python.org, then rerun the commands above. If you already created `.venv` with
-Python 3.14, remove that environment and recreate it with Python 3.11:
+Run each command separately.
 
 ```powershell
 deactivate
 Remove-Item -Recurse -Force .venv
-py -3.11 -m venv .venv
+py -3.14 -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 ```
